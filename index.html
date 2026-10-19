@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web E-Commerce Finals Mock Exam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span>Web E-Commerce Finals Mock Exam</span>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- HOME PAGE VIEW -->
+        <section id="home-page" class="view-section active">
+            <div class="card hero-card">
+                <div class="hero-badge">Finals Exam Preparation</div>
+                <h1 class="hero-title">E-Commerce Finals Mock Exam</h1>
+
+                <div class="options-grid">
+                    <div class="option-box">
+                        <label for="lesson-select">Select Lesson / Module</label>
+                        <select id="lesson-select" class="custom-select">
+                            <option value="ALL">All Lessons</option>
+                            <option value="Week 1" disabled>Week 1</option>
+                            <option value="Week 2">Week 2: Intro & E-Commerce Models</option>
+                            <option value="Week 3">Week 3: E-Commerce Infrastructure</option>
+                            <option value="Week 4">Week 4: Presence, Platforms & Mobile</option>
+                            <option value="Week 5">Week 5: Security & Payment Systems</option>
+                            <option value="Week 6">Week 6: E-Commerce Business Strategies</option>
+                            <option value="Week 8">Week 8: Marketing & Advertising</option>
+                            <option value="Week 9">Week 9: Social, Mobile & Local Marketing</option>
+                        </select>
+                    </div>
+
+                    <div class="option-box">
+                        <div class="slider-header">
+                            <label for="count-slider">Number of Questions</label>
+                            <span id="slider-count-display" class="slider-count-display">All (157)</span>
+                        </div>
+                        <div class="slider-wrapper">
+                            <input type="range" id="count-slider" class="custom-slider" min="1" max="157" value="157"
+                                step="1">
+                            <div class="slider-ticks">
+                                <span>1</span>
+                                <span id="slider-max-label">157 (Max)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="start-btn" class="btn btn-primary btn-lg">
+                    Start Mock Exam ➔
+                </button>
+            </div>
+        </section>
+
+        <!-- QUESTION PAGE VIEW -->
+        <section id="question-page" class="view-section">
+            <!-- Progress Bar Track -->
+            <div class="progress-track-wrapper">
+                <div class="progress-track">
+                    <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <!-- Exam Live Header -->
+            <div class="exam-header">
+                <div class="stat-pill">
+                    <span class="stat-label">Question:</span>
+                    <span id="q-counter">0</span> / <span id="q-total">0</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-label">Score:</span>
+                    <span id="live-score">0</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-label">Accuracy:</span>
+                    <span id="live-accuracy">0%</span>
+                </div>
+            </div>
+
+            <!-- Question Box -->
+            <div class="question-box">
+                <div class="question-meta-bar">
+                    <span id="question-index-badge" class="index-badge">Question 1</span>
+                </div>
+
+                <h2 id="question-text" class="question-title">
+                    Loading question...
+                </h2>
+
+                <!-- Multiple Choice Options Container -->
+                <div id="options-container" class="options-container" role="radiogroup"
+                    aria-label="Multiple choice options">
+                    <!-- Dynamically populated via script.js -->
+                </div>
+
+                <!-- Instant Feedback Banner -->
+                <div id="instant-feedback" class="feedback-banner" role="alert"></div>
+
+                <div class="form-actions">
+                    <button type="button" id="end-test-btn" class="btn btn-outline">
+                        End Test
+                    </button>
+
+                    <button type="button" id="submit-answer-btn" class="btn btn-secondary" disabled>
+                        Submit Answer
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULT PAGE VIEW -->
+        <section id="result-page" class="view-section">
+            <!-- Result Summary Header Card -->
+            <div class="card result-header-card">
+                <div id="result-badge" class="result-badge">Finished</div>
+                <h2>Exam Summary</h2>
+
+                <div class="score-display">
+                    <div id="score-circle" class="score-circle" style="--percentage: 0;">
+                        <div class="score-circle-inner">
+                            <span id="result-percentage" class="percentage-text">0%</span>
+                            <span class="percentage-label">Accuracy</span>
+                        </div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div id="res-score-ratio" class="metric-val">0 / 0</div>
+                            <div class="metric-lbl">Total Score</div>
+                        </div>
+                        <div class="metric-card">
+                            <div id="res-correct-count" class="metric-val">0</div>
+                            <div class="metric-lbl">Correct</div>
+                        </div>
+                        <div class="metric-card">
+                            <div id="res-wrong-count" class="metric-val">0</div>
+                            <div class="metric-lbl">Incorrect</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Question Breakdown -->
+            <div class="history-section-header">
+                <h3>Question Breakdown</h3>
+                <div class="filter-pills">
+                    <button class="filter-btn active" data-filter="all">All (<span
+                            id="filter-all-count">0</span>)</button>
+                    <button class="filter-btn" data-filter="correct">Correct (<span
+                            id="filter-correct-count">0</span>)</button>
+                    <button class="filter-btn" data-filter="wrong">Wrong (<span
+                            id="filter-wrong-count">0</span>)</button>
+                </div>
+            </div>
+
+            <!-- History Items Container -->
+            <div id="history-list" class="history-list">
+                <!-- Rendered dynamically via script.js -->
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="results-footer-actions">
+                <button id="restart-btn" class="btn btn-primary btn-lg">
+                    Retake Practice Test
+                </button>
+                <button id="home-btn" class="btn btn-outline btn-lg">
+                    Return to Home
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
